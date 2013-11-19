@@ -6,6 +6,6 @@ Gem::Specification.new do |s|
   s.summary     = "Redis backed memoization helpers"
   s.description = "Redis backed memoization helpers"
   s.authors     = ["Levi Cook"]
-  s.files       = ["lib/memodis.rb", "lib/memodis/dist_cache.rb"]
+  s.files       = ["lib/memodis.rb", "lib/memodis/dist_cache.rb", "lib/memodis/version.rb"]
   s.homepage    = 'https://github.com/levicook/memodis.git'
 end
