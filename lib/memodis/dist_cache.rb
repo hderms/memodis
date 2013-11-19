@@ -1,4 +1,3 @@
-require 'dist_redis'
 
 module Memodis
   class DistCache
@@ -10,9 +9,10 @@ module Memodis
     CODERS.freeze
 
     def initialize(options)
-      @master = DistRedis.new({
+      @master = Redis.new({
         :db => options[:db],
-        :hosts => options[:master],
+        :host => options[:host],
+        :port  => optsions[:port,]
         :timeout => options[:timeout],
       })
       @slaves = options[:slaves].map do |h|
