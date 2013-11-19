@@ -1,0 +1,12 @@
+GEM
+  remote: http://rubygems.org/
+  specs:
+    daemon_controller (1.1.7)
+    redis (3.0.6)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  daemon_controller
+  redis
