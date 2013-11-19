@@ -1,4 +1,4 @@
-require 'teststrap'
+require './teststrap'
 
 context Memodis do
   setup { Memodis }

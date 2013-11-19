@@ -3,6 +3,9 @@ GEM
   specs:
     daemon_controller (1.1.7)
     redis (3.0.6)
+    riot (0.12.7)
+      rr
+    rr (1.1.2)
 
 PLATFORMS
   ruby
@@ -10,3 +13,4 @@ PLATFORMS
 DEPENDENCIES
   daemon_controller
   redis
+  riot
