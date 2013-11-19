@@ -15,15 +15,6 @@ module Memodis
         :port  => options[:port],
         :timeout => options[:timeout]
       })
-      @slaves = options[:slaves].map do |h|
-        host, port = h.split(':')
-        Redis.new({
-          :db => options[:db],
-          :host => host,
-          :port => port,
-          :timeout => options[:timeout],
-        })
-      end
       @encoder = resolve_coder(options[:encoder])
       @decoder = resolve_coder(options[:decoder])
       @key_gen = options.fetch(:key_gen, lambda { |k| k })
@@ -51,21 +42,10 @@ module Memodis
       @key_gen.call(key)
     end
 
-    def indexed_slaves
-      @indexed_slaves ||= @slaves.inject(Hash.new) do |index, slave|
-        slave_info  = slave.info
-        master_host = slave_info[:master_host]
-        master_port = slave_info[:master_port]
-        index["#{master_host}:#{master_port}"] = slave
-        index
-      end
-    end
 
     def get key
-      m_node = @master.node_for_key(String(key.first))
-      s_node = indexed_slaves[m_node.server] || m_node
       # TODO log warning if s_node == m_node
-      s_node.get(key)
+      @master.get(key)
     end
 
     def decode(val)
