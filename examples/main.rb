@@ -1,31 +1,39 @@
-require 'pathname'
-load Pathname.new(__FILE__).parent.parent + 'lib/memodis.rb'
-
-require 'rubygems'
-require 'hitimes'
-
+require 'memodis'
+require 'benchmark'
 def fib(num)
   return num if num < 2
   fib(num - 1) + fib(num - 2)
 end
 
-puts 'Before memoize: '
-puts Hitimes::Interval.measure { print fib(33); print ': ' }
+puts "Before memoize: "
+
+non_memoized = Benchmark.measure do
+puts fib(33) => 3524578 # after ~ 7 seconds
+end
+puts non_memoized
+
+
 
 
 extend Memodis
-
 memoize :fib, Memodis::DistCache.new({
   :key_gen => lambda { |k| "fib(#{k})" },
-  :decoder => :integer,
-  :expires => (10 * 60),
-  :master  => '127.0.0.1:16379 127.0.0.1:16380'.split,
-  :slaves  => '127.0.0.1:16389 127.0.0.1:16390 
-               127.0.0.1:16391 127.0.0.1:16392
-               127.0.0.1:16393 127.0.0.1:16394'.split
+    :decoder => :integer,
+    :expires => (10 * 60),
+    :master  => '127.0.0.1:6379',
+    :slaves  => ['127.0.0.1:6379']
 })
+memoized = []
 
+memoized << Benchmark.measure do
+puts fib(33) => 3524578 # after ~ 0.03   seconds
+end
+memoized <<  Benchmark.measure do 
+puts fib(33) => 3524578 # after ~ 0.0001 seconds
+end
+
+memoized << Benchmark.measure do 
+puts fib(33) => 3524578 # after ~ 0.0001 seconds
+end
 puts "After memoize: "
-puts Hitimes::Interval.measure { print fib(33); print ': ' }
-puts Hitimes::Interval.measure { print fib(33); print ': ' }
-puts Hitimes::Interval.measure { print fib(33); print ': ' }
+puts memoized.join("\n")
