@@ -13,7 +13,7 @@ module Memodis
         :db => options[:db],
         :host => options[:host],
         :port  => optsions[:port],
-        :timeout => options[:timeout],
+        :timeout => options[:timeout]
       })
       @slaves = options[:slaves].map do |h|
         host, port = h.split(':')
