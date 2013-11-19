@@ -1,6 +1,7 @@
 require 'rubygems'
 
 require 'pathname'
+require 'memoizable'
 
 
 module Memodis
