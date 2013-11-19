@@ -1,6 +1,7 @@
 = memodis
 
 semi-transparent memoization; backed by redis;
+Forked off of: https://github.com/levicook/memodis due to inactivity
 
 
 Two features:
