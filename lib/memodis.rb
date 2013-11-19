@@ -1,7 +1,6 @@
 require 'rubygems'
 
 require 'pathname'
-require './memodis/dist_cache.rb'
 
 
 module Memodis
