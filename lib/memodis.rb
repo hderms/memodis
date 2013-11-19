@@ -1,10 +1,17 @@
 require 'rubygems'
 
 require 'pathname'
-require 'memoizable'
+
 require 'memodis/dist_cache'
 
-
 module Memodis
-  include Memoizable
+
+  # slurp cool vendor goodies into our namespace. would declare them 
+  # as gem dependencies, but they don't seem to be published...
+
+  vendor_path = Pathname.new(__FILE__).parent.parent + 'vendor'
+  class_eval((vendor_path+'memoizable.rb').read) unless defined? Memodis::Memoizable
+
+  include Memodis::Memoizable
+
 end

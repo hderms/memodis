@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.description = "semi-transparent memoization; backed by redis;"
   s.authors     = ["Levi Cook"]
   s.email     =  "levicook@gmail.com"
-  s.files       = ["lib/memodis.rb", "lib/memodis/dist_cache.rb", "lib/memodis/version.rb"]
+  s.files       = ["lib/memodis.rb", "lib/memodis/dist_cache.rb", "lib/memodis/version.rb", "vendor/memoizable.rb"]
   s.homepage    = 'https://github.com/levicook/memodis'
   s.add_runtime_dependency 'redis', '>= 3.0.6'
   s.add_runtime_dependency 'daemon_controller', '>= 1.1.7'
