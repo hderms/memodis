@@ -1,4 +1,4 @@
-
+require 'redis'
 module Memodis
   class DistCache
 
@@ -12,7 +12,7 @@ module Memodis
       @master = Redis.new({
         :db => options[:db],
         :host => options[:host],
-        :port  => optsions[:port],
+        :port  => options[:port],
         :timeout => options[:timeout]
       })
       @slaves = options[:slaves].map do |h|
