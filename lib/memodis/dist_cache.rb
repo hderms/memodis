@@ -59,7 +59,7 @@ module Memodis
     def keys_set_exists?
       @master.exists MEMODIS_KEYS_SET
     end
-    def in_keys_set?
+    def in_keys_set?(key)
       @master.sismember(MEMODIS_KEYS_SET, key)
       end
 
