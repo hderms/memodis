@@ -31,7 +31,7 @@ module Memodis
       @master.expire(key, @expires) unless @expires.nil?
     end
     
-    def del key
+    def del(key)
       key = canonicalize(key)
       @master.srem(MEMODIS_KEYS_SET, key)
       @master.del(key)
