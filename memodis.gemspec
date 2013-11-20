@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.email     =  "levicook@gmail.com"
   s.files       = ["lib/memodis.rb", "lib/memodis/dist_cache.rb", "lib/memodis/version.rb", "vendor/memoizable.rb"]
   s.homepage    = 'https://github.com/levicook/memodis'
-  s.add_runtime_dependency 'redis', '>= 3.0.6'
+  s.add_runtime_dependency 'redis', '>= 3.0.0'
   s.add_runtime_dependency 'daemon_controller', '>= 1.1.7'
   s.add_runtime_dependency 'memoizable', '>= 0.2.0'
   s.add_development_dependency 'riot', '>= 0'
